@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>
+        {% block title %}
+            Sales
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+{#<nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+{#<a class="navbar-brand" href="#">Navbar</a>#}
+{#<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
+{#<span class="navbar-toggler-icon"></span>#}
+{#</button>#}
+
+{#<div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#<ul class="navbar-nav mr-auto">#}
+{#<li class="nav-item active">#}
+{#    <a class="nav-link" href="{% url 'products_list_url' %}">Products</a>#}
+{#</li>#}
+{#<li class="nav-item">#}
+{#    <a class="nav-link" href="{% url 'categories_list_url' %}">Categories</a>#}
+{#</li>#}
+{#<li class="nav-item">#}
+{#    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+{#</li>#}
+{#</ul>#}
+{#<form class="form-inline my-2 my-lg-0" action="{% url 'products_list_url' %}">#}
+{#<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">#}
+{#<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#</form>#}
+{#</div>#}
+{#</nav>#}
+
+    <div class="navpanel">
+        <a class="logo" href="{% url 'main_url' %}">OLSETA</a>
+        <ul class="navMn">
+            <li class="navItem"><a href="{% url 'main_url' %}">Главная</a></li>
+            <li class="navItem"><a href="{% url 'categories_list_url' %}">Продукция</a></li>
+            <li class="navItem"><a href="">О предприятии</a></li>
+            <li class="navItem"><a href="{% url 'contacts_url' %}">Контакты</a></li>
+        </ul>
+        <form class="searchGroup" action="{% url 'products_list_url' %}">
+			<input type="text" id="searchInput" class="searchInput" name="search">
+			<span class="material-icons i-search searchBtn" id="searchBtn"></span>
+		</form>
+    </div>
+    <div class="mainContainer">
+        {% block content %}
+            There is no any content for you
+        {% endblock %}
+    </div>
+
+{#<div class="container mt-5">#}
+{#    <div class="row">#}
+{#        <div class="col-6 offset-md-2">#}
+{#            {% block content %}#}
+{#                There is no any content for you#}
+{#            {% endblock %}#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+{% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="admin-panel-container">
+        <div class="admin-panel align-items-center">
+            <a href="/admin" class="btn btn-outline-info">Admin</a>
+            {% block admin-panel %}{% endblock %}
+        </div>
+    </div>
+{% endif %}
+
+<script>
+    function q(selector) {
+        return document.querySelector(selector);
+    }
+
+    searchBtn.onclick = function () {
+        if (q("#searchInput").getAttribute("class").includes("active")) {
+            q("#searchInput").setAttribute("class", "searchInput");
+        } else {
+            q("#searchInput").setAttribute("class", "searchInput active");
+        }
+    }
+</script>
+
+</body>
+</html>

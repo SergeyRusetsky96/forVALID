@@ -1,0 +1,18 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    Delete category "{{ category.title|title }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bCenter">
+        <div class="block mWidth">
+            <form action="{{ category.get_delete_url }}" method="post">
+                {% csrf_token %}
+                <h3 class="cBlack">Are you sure want to delete <b class="cBlack">"{{ category.title|title }}"</b> category?</h3>
+                <a class="cBlack" href="{{ category.get_absolute_url }}">Cancel</a>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

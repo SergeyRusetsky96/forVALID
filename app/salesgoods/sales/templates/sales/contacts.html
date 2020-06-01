@@ -1,0 +1,33 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    Contacts - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bgWhite"></div>
+    <div class="contactBlock">
+        <div class="contactInfo">
+            <div class="contactTitle">Контакты</div>
+            <div class="contactSubTitle">Продажи</div>
+            <div class="textSilenced">Телефон&nbsp<span class="textSo">+375 (00) 000-00-00</span></div>
+            <div class="textSilenced">Email&nbsp<span class="textSo">example@example.com</span></div>
+            <div class="contactSubTitle">Адрес</div>
+            <div class="textSo">г. Минск, ул. Тимирязева 10</div>
+            <div class="contactSubTitle">Время работы</div>
+            <div class="textSo">Пн-Пт 10:00 - 21:00</div>
+            <div class="textSo">Сб,Вс 10:00 - 16:00</div>
+        </div>
+        <div class="contactForm">
+            <div class="contactTitle">Форма обратной связи</div>
+            <div class="contactInputGroup">
+                <input type="text" class="contactInput mRight" placeholder="Имя" required>
+                <input type="text" class="contactInput" placeholder="Телефон" required>
+            </div>
+            <input type="email" class="contactInput" placeholder="Email" required>
+            <textarea class="contactTextarea" name="" id="" cols="30" rows="6" placeholder="Текс сообщения"
+                      required></textarea>
+            <button class="contactBtn">Отправить</button>
+        </div>
+    </div>
+{% endblock %}

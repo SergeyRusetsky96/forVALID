@@ -1,0 +1,27 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    Edit Product "{{ product.title|title }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bCenter">
+        <div class="block mWidth">
+            <form action="{{ product.get_update_url }}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group cBlack">
+                        {% if field.errors %}
+                            <div class="alert alert-danger">
+                                {{ filed.errors }}
+                            </div>
+                        {% endif %}
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" name="button" class="btn btn-primary">Update product</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    {{ category.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bgWhite"></div>
+    <div class="categoryPage">
+        <div class="categoryTitle">{{ category.title|title }}</div>
+        {% for product in category.products.all %}
+
+            {% include 'sales/includes/product_card_template.html' %}
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

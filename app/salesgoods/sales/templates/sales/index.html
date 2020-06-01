@@ -1,0 +1,19 @@
+{% extends 'sales/base_sales.html' %}
+
+
+{% block title %}
+    Products list
+{% endblock %}
+
+{% block content %}
+    <div class="bgWhite"></div>
+    <div class="categoryPage">
+        <div class="categoryTitle">Продукция:</div>
+        {% for product in products %}
+
+            {% include 'sales/includes/product_card_template.html' %}
+
+        {% endfor %}
+    </div>
+{% endblock %}
+

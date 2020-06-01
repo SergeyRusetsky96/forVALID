@@ -1,0 +1,29 @@
+{% extends 'sales/base_sales.html' %}
+{% block title %}
+    {{ product.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="bgProduct"></div>
+    <div class="productWrapper">
+        <div class="blockProduct blockProductImg">
+            <img src="{{ product.image }}"></img>
+        </div>
+        <div class="blockProduct blockProductContent">
+            <div class="categoryProductBody">
+                <div class="categoryProduct-Title blockProduct-Title">{{ product.title }}</div>
+                <div class="categoryProduct-Desc">
+                   {{ product.body }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    <h1 class="mt-5">#}
+    {#        {{ product.title }}#}
+    {#    </h1>#}
+    {#    <p>#}
+    {#        {{ product.body }}#}
+    {#    </p>#}
+
+{% endblock %}

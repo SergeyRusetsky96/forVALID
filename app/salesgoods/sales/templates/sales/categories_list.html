@@ -1,0 +1,37 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    Categories list - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bgWhite"></div>
+    <div class="bgSalesBlock">
+        <div class="bgSalesMainImg-Outter">
+            <img class="bgSalesMainImg" src="https://borwood.by/local/source/img/banner__bg--list.jpg"></img>
+            <div class="bgSalesMainImg-Capture">Продукция предприятия</div>
+        </div>
+
+        <div class="productBlock-List">
+            {% for category in categories %}
+                <div class="productBlock">
+                    <div class="productBlock-img"
+                         style="background: url(https://sun1.velcom-by-minsk.userapi.com/-AwL1DlwXqTkjqt7CeYlFEWL8agQM17_nhYMpA/hAIrsAa_IF4.jpg);"></div>
+                    <div class="productBlock-Title">{{ category.title }}</div>
+                    <div class="productBlock-body">{{ category.body }}
+                    </div>
+                    <a class="productUrl" href="{{ category.get_absolute_url }}"></a>
+                    <div class="productBlockOnHover"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{#    <h1 class="mb-5">Products:</h1>#}
+{#    {% for category in categories %}#}
+{##}
+{#        <h3><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></h3>#}
+{#        <p>#}
+{#            {{ category.body }}#}
+{#        </p>#}
+{#    {% endfor %}#}
+{% endblock %}

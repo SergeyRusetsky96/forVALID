@@ -1,0 +1,30 @@
+{% extends 'sales/base_sales.html' %}
+
+{% block title %}
+    Create Product - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="bCenter">
+        <div class="block mWidth">
+            <form action="{% url 'product_create_url' %}" method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group cBlack">
+                        {% if field.errors %}
+                            <div class="alert alert-danger">
+                                {{ filed.errors }}
+                            </div>
+                        {% endif %}
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+
+                {% endfor %}
+                <button type="submit" name="button" class="btn btn-primary">Create product</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

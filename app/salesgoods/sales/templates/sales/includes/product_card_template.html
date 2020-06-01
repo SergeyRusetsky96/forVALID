@@ -1,0 +1,27 @@
+<div class="categoryProductBlock">
+    <img class="categoryProductImg"
+         src={{ product.image }}></img>
+    <div class="categoryProductBody">
+        <div class="categoryProduct-Title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></div>
+        <div class="categoryProduct-Desc">
+            {{ product.body }}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{#<div class="card mb-4" style="width: 18rem;">#}
+{#    <img src="..." class="card-img-top" alt="...">#}
+{#    <div class="card-body">#}
+{#        <h5 class="card-title">#}
+{#            {{ product.title }}#}
+{#        </h5>#}
+{#        <p class="card-text">#}
+{#            {{ product.body|truncatewords:10 }}#}
+{#        </p>#}
+{#        <a href="{{ product.get_absolute_url }}" class="btn btn-primary">More</a>#}
+{#    </div>#}
+{#</div>#}
