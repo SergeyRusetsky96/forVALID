@@ -3,9 +3,12 @@ from django.views.generic import View
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
+from django.http import HttpResponse
+from django.core.mail import send_mail, BadHeaderError
+
 from .models import Product, Category
 from .utils import *
-from .forms import CategoryForm, ProductForm
+from .forms import *
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -18,7 +21,6 @@ def products_list(request):
     else:
         products = Product.objects.all()
     return render(request, 'sales/index.html', context={'products': products})
-
 
 
 class ProductCreate(LoginRequiredMixin, ObjectCreateMixin, View):
@@ -84,3 +86,28 @@ def contacts(request):
     return render(request, 'sales/contacts.html', context={'contacts': contacts})
 
 
+def contacts(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            sender = form.cleaned_data['sender']
+            message = form.cleaned_data['message']
+            copy = form.cleaned_data['copy']
+
+            recipients = ['Stels9078@yandex.ru']
+            # Если пользователь захотел получить копию себе, добавляем его в список получателей
+            if copy:
+                recipients.append(sender)
+            try:
+                send_mail(subject, message, 'Stels9078@gmail.com', recipients)
+            except BadHeaderError:  # Защита от уязвимости
+                return HttpResponse('Invalid header found')
+            # Переходим на другую страницу, если сообщение отправлено
+            return render(request, 'sales/contacts.html')
+    else:
+        # Заполняем форму
+        form = ContactForm()
+    # Отправляем форму на страницу
+    return render(request, 'sales/contacts.html', {'form': form})

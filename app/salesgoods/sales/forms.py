@@ -27,11 +27,11 @@ class CategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'body', 'categories', 'image']
+        fields = ['title', 'body', 'categories']
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            #'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'categories': forms.Select(attrs={'class': 'form-control'})
         }
@@ -42,3 +42,10 @@ class ProductForm(forms.ModelForm):
         if new_slug == 'create':
             raise ValidationError('Slug may not be "Create"')
         return new_slug
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    sender = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    copy = forms.BooleanField(required=False)

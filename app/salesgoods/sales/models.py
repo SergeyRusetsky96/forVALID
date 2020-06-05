@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django import forms
 
 from django.utils.text import slugify
 from time import time
@@ -52,3 +53,5 @@ class Category(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+

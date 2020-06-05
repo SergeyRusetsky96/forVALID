@@ -17,17 +17,24 @@
             <div class="contactSubTitle">Время работы</div>
             <div class="textSo">Пн-Пт 10:00 - 21:00</div>
             <div class="textSo">Сб,Вс 10:00 - 16:00</div>
+            <
         </div>
         <div class="contactForm">
-            <div class="contactTitle">Форма обратной связи</div>
-            <div class="contactInputGroup">
-                <input type="text" class="contactInput mRight" placeholder="Имя" required>
-                <input type="text" class="contactInput" placeholder="Телефон" required>
-            </div>
-            <input type="email" class="contactInput" placeholder="Email" required>
-            <textarea class="contactTextarea" name="" id="" cols="30" rows="6" placeholder="Текс сообщения"
-                      required></textarea>
-            <button class="contactBtn">Отправить</button>
+            <form action="/contacts/" method="post">{% csrf_token %}
+                <div class="contactTitle">Форма обратной связи</div>
+                <div class="contactInputGroup">
+                    <input type="text" class="contactInput mRight" placeholder="Имя" required {{ form.subject.errors }}
+                            {{ form.subject }}>
+                    <input type="text" class="contactInput" placeholder="Телефон">
+                </div>
+                <input type="email" class="contactInput" placeholder="Email" required {{ form.sender.errors }}
+                        {{ form.sender }}>
+                <textarea class="contactTextarea" name="" id="" cols="30" rows="6" placeholder="Текс сообщения"
+                          required  >{{ form.message.errors }}
+                    {{ form.message }}</textarea>
+                <button class="contactBtn" type="submit">Отправить</button>
+            </form>
         </div>
     </div>
+
 {% endblock %}
